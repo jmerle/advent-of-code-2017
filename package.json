@@ -1,0 +1,17 @@
+{
+  "name": "advent-of-code-2017",
+  "version": "1.0.0",
+  "description": "Advent of Code 2017 in JS",
+  "scripts": {
+    "new": "node src/cli/new",
+    "solve": "node src/cli/solve"
+  },
+  "repository": "https://github.com/jmerle/advent-of-code-2017",
+  "author": "Jasper van Merle",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "callsite": "^1.0.0",
+    "open": "^0.0.5"
+  }
+}
