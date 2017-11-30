@@ -16,15 +16,17 @@ function solve() {
 
   const moves = input.toLowerCase().split(', ');
 
-  const markers = [];
-
   let x = 0;
   let y = 0;
 
-  while (moves.length > 0) {
-    const move = moves.shift();
+  const origin = new Point(0, 0);
+  let maxDistanceToOrigin = -1;
 
-    switch (move) {
+  const markersA = [];
+  const markersB = [];
+
+  for (let i = 0; i < moves.length; i++) {
+    switch (moves[i]) {
       case 'left':
         x--;
         break;
@@ -39,24 +41,19 @@ function solve() {
         break;
       case 'a':
       case 'b':
-        markers.push(new Point(x, y));
+        const marker = new Point(x, y);
+
+        maxDistanceToOrigin = Math.max(maxDistanceToOrigin, origin.distanceTo(marker));
+        (moves[i] === 'a' ? markersA : markersB).push(marker);
         break;
     }
   }
 
-  const origin = new Point(0, 0);
-
-  const maxDistanceToOrigin = markers
-    .map(marker => marker.distanceTo(origin))
-    .sort((a, b) => b - a)[0];
-
   let maxDistanceBetweenPairs = -1;
 
-  for (let i = 0; i < markers.length; i++) {
-    for (let j = 0; j < markers.length; j++) {
-      if (i !== j) {
-        maxDistanceBetweenPairs = Math.max(maxDistanceBetweenPairs, markers[i].distanceTo(markers[j]));
-      }
+  for (let i = 0; i < markersA.length; i++) {
+    for (let j = 0; j < markersB.length; j++) {
+      maxDistanceBetweenPairs = Math.max(maxDistanceBetweenPairs, markersA[i].distanceTo(markersB[j]));
     }
   }
 

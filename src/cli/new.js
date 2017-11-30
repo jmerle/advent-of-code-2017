@@ -14,7 +14,7 @@ module.exports = solve;
 
 const inputTemplate = '';
 
-if (process.argv.length === 3 && parseInt(process.argv[2]) !== NaN) {
+if (process.argv.length === 3 && !isNaN(parseInt(process.argv[2]))) {
   const dayPath = getDayPath(parseInt(process.argv[2]));
   const dayDir = path.dirname(dayPath);
 
