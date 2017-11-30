@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const open = require('open');
 const { getDayPath } = require('../utils');
 
 const solveTemplate = `
@@ -15,7 +14,7 @@ module.exports = solve;
 
 const inputTemplate = '';
 
-if (process.argv.length === 3 && parseInt(process.argv[2])) {
+if (process.argv.length === 3 && parseInt(process.argv[2]) !== NaN) {
   const dayPath = getDayPath(parseInt(process.argv[2]));
   const dayDir = path.dirname(dayPath);
 
@@ -27,9 +26,6 @@ if (process.argv.length === 3 && parseInt(process.argv[2])) {
 
     fs.writeFileSync(solvePath, solveTemplate);
     fs.writeFileSync(inputPath, inputTemplate);
-
-    open(solvePath);
-    open(inputPath);
   } else {
     console.error('There already exists a directory for the given day.');
     console.error(`Directory: ${dayDir}`);

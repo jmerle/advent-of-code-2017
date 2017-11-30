@@ -1,7 +1,7 @@
 const fs = require('fs');
 const { getDayPath } = require('../utils');
 
-if (process.argv.length === 3 && parseInt(process.argv[2])) {
+if (process.argv.length === 3 && parseInt(process.argv[2]) !== NaN) {
   const dayPath = getDayPath(parseInt(process.argv[2]));
 
   if (fs.existsSync(dayPath)) {

@@ -11,7 +11,6 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "callsite": "^1.0.0",
-    "open": "^0.0.5"
+    "callsite": "^1.0.0"
   }
 }
