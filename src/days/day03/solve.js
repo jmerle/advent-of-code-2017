@@ -88,7 +88,7 @@ function solve() {
 
   for (const point of normalSpiral()) {
     if (point.value === input) {
-      const distanceToAccessPort = point.distanceTo(new Point(0, 0, 1));
+      const distanceToAccessPort = point.distanceTo(new Point(0, 0));
       console.log(`Distance from input square to access port: ${distanceToAccessPort}`);
       break;
     }
