@@ -28,21 +28,36 @@ function solve() {
       });
   }
 
-  const connectedToZero = new Set();
-  const toProcess = [...programs[0].connections];
+  let amountOfGroups = 0;
+  let notConnected = new Set();
 
-  while (toProcess.length > 0) {
-    const id = toProcess.shift();
-
-    programs[id].connections.forEach(i => {
-      if (!connectedToZero.has(i)) {
-        connectedToZero.add(i);
-        toProcess.push(i);
-      }
-    });
+  for (let i = 0; i < programs.length; i++) {
+    notConnected.add(i);
   }
 
-  console.log(`Amount of programs connected to program 0: ${connectedToZero.size}`);
+  while (notConnected.size > 0) {
+    const connected = new Set();
+    const toProcess = [...programs[[...notConnected][0]].connections];
+
+    while (toProcess.length > 0) {
+      const id = toProcess.shift();
+
+      programs[id].connections.forEach(i => {
+        if (!connected.has(i)) {
+          connected.add(i);
+          toProcess.push(i);
+        }
+      });
+    }
+
+    connected.forEach(i => {
+      notConnected.delete(i);
+    });
+
+    amountOfGroups++;
+  }
+
+  console.log(`Amount of groups: ${amountOfGroups}`);
 }
 
 module.exports = solve;
